@@ -1,0 +1,10 @@
+# Organizador de tareas del HC Liceo (proyecto de Netlify: organizador-tareas-liceo)
+[build]
+  publish = "public"
+  command = "echo 'sin compilación'"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
+    Referrer-Policy = "no-referrer"
