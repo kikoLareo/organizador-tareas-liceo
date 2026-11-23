@@ -406,7 +406,7 @@ function render(){
   const listo=S.cargado.partidos&&S.cargado.tareas&&S.cargado.personas&&S.cargado.departamentos;
   let html="";
   if(S.error)html=`<div class="aviso" style="margin-bottom:16px">${esc(S.error)}</div>`;
-  if(!S.puede&&listo)html+=`<div class="aviso" style="margin-bottom:16px">Estás en modo lectura: puedes consultar y filtrar, pero no cambiar tareas.</div>`;
+  if(!S.puede&&listo)html+=`<div class="aviso" style="margin-bottom:16px">Estás en modo lectura: puedes consultar y filtrar, pero no cambiar tareas. <button type="button" class="btn sm" data-act="salir" style="margin-left:6px">Entrar con otra clave</button></div>`;
   if(!listo&&!S.error){html+=`<div class="vacio">Cargando partidos, tareas y equipo…</div>`}
   else if(r.startsWith("partido-"))html+=vistaPartido(r.slice(8));
   else if(r==="plantilla")html+=vistaPlantilla();

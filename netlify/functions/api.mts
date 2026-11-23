@@ -15,9 +15,11 @@ const ID_OK = /^[A-Za-z0-9_-]{1,80}$/;
 const almacen = () => getStore({ name: "dia-de-partido", consistency: "strong" });
 
 function rol(req: Request): "editor" | "lector" | null {
-  const clave = req.headers.get("x-clave") || "";
-  const edicion = Netlify.env.get("CLAVE_EDICION");
-  const equipo = Netlify.env.get("CLAVE_EQUIPO");
+  // Sin distinguir mayúsculas ni espacios al principio o al final: más fácil desde el móvil.
+  const norm = (v?: string | null) => (v || "").trim().toLowerCase();
+  const clave = norm(req.headers.get("x-clave"));
+  const edicion = norm(Netlify.env.get("CLAVE_EDICION"));
+  const equipo = norm(Netlify.env.get("CLAVE_EQUIPO"));
   if (edicion && clave === edicion) return "editor";
   if (equipo && clave === equipo) return "lector";
   return null;
